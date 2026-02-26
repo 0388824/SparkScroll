@@ -1,79 +1,107 @@
-export interface MockPlanet {
+// @/data/mockGalaxy.ts
+
+export interface CognitionNode {
   id: string;
-  name: string; // e.g. "Finance", "Design"
-  color: string;
-  position: [number, number, number]; // 3D 坐标
-  size: number;
-  mockInsights: {
-    id: string;
-    content: string;
-    date: string;
-    tag: string;
-  }[];
+  date: string;
+  tag: string;
+  content: string; // 列表页显示的核心观点
+  thought_flow: string; // 点击后 Deep Dive 显示的深度思考
 }
 
-export const MOCK_GALAXY_DATA: MockPlanet[] = [
+export interface PlanetData {
+  id: string;
+  name: string;
+  color: string;
+  size: number;
+  position: [number, number, number];
+  mockInsights: CognitionNode[];
+  linked_to?: string[];
+}
+
+export const MOCK_GALAXY_DATA: PlanetData[] = [
   {
-    id: "finance",
-    name: "Finance & Macro",
-    color: "#00D9FF",
-    position: [0, 0, 0], // 中心位置，或者根据布局调整
-    size: 1.2,
+    id: "planet_tech",
+    name: "Tech & Engineering", 
+    color: "#00D9FF", 
+    size: 2.1,
+    position: [0, 0, 0], 
     mockInsights: [
-      { id: "m1", content: "Bitcoin is the only hedge against systematic fiat devaluation.", date: "JAN 20", tag: "Store of Value" },
-      { id: "m2", content: "The yield curve inversion is signaling a recession within 6 months.", date: "JAN 15", tag: "Macro" }
+      {
+        id: "tech_001",
+        date: "2026-02-26",
+        tag: "Privacy Display",
+        content: "Switchable hardware is a trade-off: We gain functional privacy at the permanent cost of transparency.",
+        thought_flow: "Analyzing the leap from passive films to active electromagnetic louver layers in Samsung S26 Ultra. Realizing that hardware transparency is becoming a programmable dynamic variable."
+      },
+      {
+        id: "tech_002",
+        date: "2026-02-26",
+        tag: "Medieval Armor",
+        content: "Armor is a material engineering boundary; the mace is a kinetic bypass of that boundary.",
+        thought_flow: "Deconstructing combat mechanics in KCD2: Why blunt weapons are the hard counter to plate armor through kinetic impact vs. surface hardness."
+      }
     ]
   },
   {
-    id: "design",
-    name: "Design & Identity",
-    color: "#FF2E54",
-    position: [3, 1, -2],
-    size: 1.0,
+    id: "planet_biz_strategy",
+    name: "Business Strategy", 
+    color: "#FFD700", 
+    size: 1.6,
+    position: [6, 2, -4], 
     mockInsights: [
-      { id: "m3", content: "Minimalism is dead; texture and chaos are the new luxury.", date: "FEB 01", tag: "Aesthetics" },
-      { id: "m4", content: "Functionality without soul is just engineering.", date: "JAN 28", tag: "Philosophy" }
+      {
+        id: "biz_001",
+        date: "2026-02-26",
+        tag: "F&B Bias",
+        content: "Retention is the only hard currency of truth. Vocal reviews are often 'post-truth' noise.",
+        thought_flow: "Identifying how social pressure masks true customer preference in dine-in scenarios. Because leaving is embarrassing, ordering doesn't equal satisfaction."
+      }
     ]
   },
   {
-    id: "ai",
-    name: "AI & Synthetic",
-    color: "#A020F0",
-    position: [-3, 2, 1],
-    size: 1.1,
+    id: "planet_legal",
+    name: "Legal Logic", 
+    color: "#FF4D4D", 
+    size: 2.0, 
+    position: [-5, 4, 3], 
     mockInsights: [
-      { id: "m5", content: "LLMs are reasoning engines, not databases.", date: "FEB 03", tag: "Cognition" },
-      { id: "m6", content: "The uncanny valley is shrinking faster than we predicted.", date: "JAN 30", tag: "Robotics" }
+      {
+        id: "legal_001", // 路径 1: 工伤
+        date: "2026-02-26",
+        tag: "Labor Law",
+        content: "Labor law is a systemic risk re-distribution mechanism, shielding individuals from operational friction.",
+        thought_flow: "Deconstructing why 'personal error' doesn't negate industrial compensation. Scaling the logic to high-value industrial equipment damage as a systemic cost."
+      },
+      {
+        id: "legal_002", // 路径 2: 交通法
+        date: "2026-02-26",
+        tag: "Traffic Law",
+        content: "Motorist liability is a 'Hazard Tax' on the kinetic energy released into public spaces.",
+        thought_flow: "Challenging the 'duty of observation' from a physics perspective. Realizing that law prioritizes system-wide risk pooling over individual micro-fairness."
+      }
     ]
   },
   {
-    id: "gaming",
-    name: "Gaming",
-    color: "#39FF14",
-    position: [2, -2, 3],
-    size: 0.9,
+    id: "planet_governance",
+    name: "Governance & Power", 
+    color: "#4169E1", 
+    size: 2.2,
+    position: [4, -4, 6], 
     mockInsights: [
-      { id: "m7", content: "Emergent gameplay beats scripted narrative every time.", date: "JAN 12", tag: "Game Design" }
-    ]
-  },
-  {
-    id: "music",
-    name: "Music Culture",
-    color: "#FFFF00",
-    position: [-2, -2, -2],
-    size: 0.8,
-    mockInsights: [
-      { id: "m8", content: "Sampling is the collage art of the 21st century.", date: "JAN 05", tag: "Production" }
-    ]
-  },
-  {
-    id: "social",
-    name: "Social Structure",
-    color: "#FFA500",
-    position: [0, 3, -4],
-    size: 1.3,
-    mockInsights: [
-      { id: "m9", content: "Digital tribes are replacing national identities.", date: "FEB 02", tag: "Sociology" }
+      {
+        id: "gov_001",
+        date: "2026-02-26",
+        tag: "Power Structure",
+        content: "Stability is achieved either by making rebellion structurally impossible or by making it an expensive trade.",
+        thought_flow: "Comparing Western Feudalism's political trading vs. Chinese Imperial structural elimination of defection via bureaucratic rotation."
+      },
+      {
+        id: "gov_002",
+        date: "2026-02-26",
+        tag: "Cognitive Control",
+        content: "The ultimate power is not force, but the removal of the capacity to conceive rebellion through algorithms.",
+        thought_flow: "Re-imagining Orwell's 1984 in 2026: Shift from 'deleting the past' to 'optimizing the neural present' via predictive feedback loops."
+      }
     ]
   }
 ];
